@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-sana-navy: #050A14;
+    --color-sana-blue: #1E3A8A;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    background-color: var(--color-sana-navy);
+    background: radial-gradient(circle at center, #172554 0%, #020617 60%);
+    color: white;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+}

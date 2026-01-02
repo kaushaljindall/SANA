@@ -165,7 +165,7 @@ function LandingPage() {
 
                 {/* Weekly Assignment Overlay (Right Side - Proactive) */}
                 <WeeklyAssignment
-                    onAvatarSpeak={(url, text, expr, anim) => {
+                    onAvatarSpeak={(url, _text, expr, anim) => {
                         setAudioUrl(url);
                         if (expr) setExpression(expr);
                         if (anim) setAnimation(anim);

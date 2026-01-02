@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { ApiService } from '../services/ApiService';
 import { useVAD } from '../hooks/useVAD';
 import { Mic, MicOff, CheckCircle } from 'lucide-react';

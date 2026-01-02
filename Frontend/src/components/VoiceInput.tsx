@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-import { Mic, X } from "lucide-react";
+import { useRef, useState } from "react";
+import { Mic } from "lucide-react";
 import { useStore } from "../store/useStore";
 import { useVAD } from "../hooks/useVAD";
 

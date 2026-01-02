@@ -8,7 +8,6 @@ import { Appointment } from '../types';
 function Profile() {
     const [user, setUser] = useState<{ name: string, email: string } | null>(null);
     const [appointments, setAppointments] = useState<Appointment[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const userStr = sessionStorage.getItem('user');
@@ -33,8 +32,6 @@ function Profile() {
             setAppointments(sorted);
         } catch (error) {
             console.error("Failed to load history", error);
-        } finally {
-            setLoading(false);
         }
     };
 

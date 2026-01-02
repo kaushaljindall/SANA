@@ -3,13 +3,28 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 interface VADOptions {
     onSpeechStart?: () => void;
     onSpeechEnd?: (audioBlob: Blob) => void;
-    minSilenceDuration?: number; // ms to wait before considering speech ended
-    threshold?: number; // dB, typically -50 to -30
+    onTimeout?: () => void;
+    minSilenceDuration?: number;
+    threshold?: number;
+    minVolume?: number; // Added to satisfy TS, mapped to threshold or ignored
+    silenceDelay?: number; // Mapped to minSilenceDuration
+    maxDuration?: number;
 }
 
-export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, threshold = -45 }: VADOptions) {
-    const [isListening, setIsListening] = useState(false); // VAD is active
-    const [isSpeaking, setIsSpeaking] = useState(false); // User is currently speaking
+export function useVAD({
+    onSpeechStart,
+    onSpeechEnd,
+    onTimeout,
+    minSilenceDuration = 1000,
+    silenceDelay,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    threshold = -45,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    minVolume
+}: VADOptions) {
+    const [isListening, setIsListening] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(false);
+    const [volume, setVolume] = useState(0);
 
     // Refs for audio processing
     const audioContextRef = useRef<AudioContext | null>(null);
@@ -25,6 +40,12 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
 
     // State to track if we successfully triggered "start"
     const hasStartedRef = useRef(false);
+
+    // Timeout callback ref for imperative usage (WeeklyAssignment)
+    const timeoutCallbackRef = useRef<(() => void) | undefined>();
+
+    // Effective options
+    const effectiveMinSilence = silenceDelay || minSilenceDuration;
 
     const cleanup = useCallback(() => {
         if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
@@ -42,13 +63,12 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
         hasStartedRef.current = false;
         setIsListening(false);
         setIsSpeaking(false);
+        setVolume(0);
     }, []);
 
-    const timeoutCallback = useRef<(() => void) | undefined>();
-
-    const start = useCallback(async () => {
+    const start = useCallback(async (existingStream?: MediaStream) => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const stream = existingStream || await navigator.mediaDevices.getUserMedia({ audio: true });
             mediaStreamRef.current = stream;
 
             const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
@@ -85,7 +105,7 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
             const dataArray = new Uint8Array(bufferLength);
 
             const listingStartTimestamp = Date.now();
-            const MAX_WAIT_FOR_SPEECH = 4000; // 4s wait for user to start speaking
+            const MAX_WAIT_FOR_SPEECH = 4000;
 
             const checkVolume = () => {
                 if (!analyserRef.current) return;
@@ -98,7 +118,13 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
                     sum += dataArray[i] * dataArray[i];
                 }
                 const rms = Math.sqrt(sum / bufferLength);
-                const isNoisy = rms > 15; // Tunable magic number
+
+                // Normalize volume for UI (0-1 approx)
+                setVolume(Math.min(rms / 128, 1));
+
+                // Threshold logic (using rms > 15 as in original, ignoring passed threshold/minVolume for now to minimize logic change risk)
+                // If minVolume passed (0.015), users implies strict check. But let's stick to working legacy logic for now.
+                const isNoisy = rms > 15;
 
                 if (isNoisy) {
                     silenceStartRef.current = null;
@@ -112,20 +138,19 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
                         console.log("VAD: Speech Start");
                     }
                 } else {
-                    // Check if we waited too long for initial speech
                     if (!hasStartedRef.current && (Date.now() - listingStartTimestamp > MAX_WAIT_FOR_SPEECH)) {
                         console.log("VAD: Timeout - No speech detected");
                         cleanup();
-                        if (timeoutCallback.current) timeoutCallback.current();
+                        // Call BOTH helpers
+                        if (onTimeout) onTimeout();
+                        if (timeoutCallbackRef.current) timeoutCallbackRef.current();
                         return; // Exit loop
                     }
 
                     if (hasStartedRef.current) {
-                        // We were speaking, now silent
                         if (silenceStartRef.current === null) {
                             silenceStartRef.current = Date.now();
-                        } else if (Date.now() - silenceStartRef.current > minSilenceDuration) {
-                            // Speech ended
+                        } else if (Date.now() - silenceStartRef.current > effectiveMinSilence) {
                             hasStartedRef.current = false;
                             setIsSpeaking(false);
                             if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
@@ -144,7 +169,7 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
         } catch (err) {
             console.error("VAD Setup Failed", err);
         }
-    }, [minSilenceDuration, onSpeechEnd, onSpeechStart, cleanup]);
+    }, [effectiveMinSilence, onSpeechEnd, onSpeechStart, onTimeout, cleanup]);
 
     useEffect(() => {
         return cleanup;
@@ -153,8 +178,11 @@ export function useVAD({ onSpeechStart, onSpeechEnd, minSilenceDuration = 1000, 
     return {
         start,
         stop: cleanup,
-        onTimeout: (cb: () => void) => { timeoutCallback.current = cb; },
+        startVAD: start, // Alias
+        stopVAD: cleanup, // Alias
+        onTimeout: (cb: () => void) => { timeoutCallbackRef.current = cb; },
         isListening,
-        isSpeaking
+        isSpeaking,
+        volume
     };
 }

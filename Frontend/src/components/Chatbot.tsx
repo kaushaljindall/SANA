@@ -19,7 +19,7 @@ interface ChatbotProps {
 
 export function Chatbot({ isOpen, onClose }: ChatbotProps) {
     // Global State
-    const { user, agent, appointment, updateAgent, updateAppointment } = useStore();
+    const { user, updateAgent, updateAppointment } = useStore();
 
     const [messages, setMessages] = useState<Message[]>([
         {

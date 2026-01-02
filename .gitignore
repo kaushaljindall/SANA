@@ -86,6 +86,7 @@ ARCHITECTURE_ADAPTIVE_ASSESSMENT.md
 AUTH_SETUP.md
 GROQ_SETUP.md
 SETUP.md
+DEPLOYMENT.md
 
 # Debug / Scratch scripts
 debug_*.py

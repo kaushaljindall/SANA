@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: sana-backend
+    env: python
+    region: ohio
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MONGO_DETAILS
+        sync: false
+      - key: DB_NAME
+        value: sana_db
+    autoDeploy: false
+    root: Backend

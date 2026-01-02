@@ -4,6 +4,14 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 
 ![SANA](Frontend/public/logo/image.png)
 
+## 🎥 See SANA in Action
+
+https://github.com/user-attachments/assets/sana_demo.mp4
+
+> Experience SANA's 3D avatar companion, voice interaction, and seamless mental health support in this demonstration.
+
+---
+
 ## 🌟 Features in Detail
 
 ### Advanced AI Core (RAG & Groq)
@@ -44,6 +52,26 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 ###  Wellness Dashboard
 - **Insights**: Visual representation of session frequency and mood trends.
 - **Activity Tracking**: Monitor engagement with the platform to encourage consistent self-care.
+
+---
+
+## 📸 Screenshots
+
+### Landing Page - 3D Avatar Experience
+![SANA Landing Page](Frontend/public/photos/landing.png)
+*Immersive 3D avatar companion (Ziva) with glassmorphism design*
+
+### Professional Dashboard
+![SANA Dashboard](Frontend/public/photos/image.png)
+*Clean, modern interface with mental health tools and insights*
+
+### Interactive Features
+![SANA Features](Frontend/public/photos/img2.png)
+*Real-time chat, voice interaction, and appointment management*
+
+### Community Support
+![Peer Support](Frontend/public/photos/img3.png)
+*Anonymous peer support forums for shared experiences*
 
 ---
 

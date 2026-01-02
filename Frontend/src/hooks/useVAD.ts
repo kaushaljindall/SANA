@@ -16,11 +16,7 @@ export function useVAD({
     onSpeechEnd,
     onTimeout,
     minSilenceDuration = 1000,
-    silenceDelay,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    threshold = -45,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    minVolume
+    silenceDelay
 }: VADOptions) {
     const [isListening, setIsListening] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);

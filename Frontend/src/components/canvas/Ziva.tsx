@@ -6,7 +6,7 @@ Fixed: TypeScript strict import, Lip Sync Logic & Console Warnings
 
 import * as THREE from 'three'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useGraph, useFrame } from '@react-three/fiber'
+import { useGraph, useFrame, useThree } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { Lipsync } from 'wawa-lipsync'
@@ -87,6 +87,23 @@ export const Ziva = React.forwardRef(({ audioUrl, expression, animation, animati
     const { scene } = useGLTF('/models/Ziva.glb')
     const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
     const { nodes, materials } = useGraph(clone)
+    const { gl } = useThree()
+
+    // 1. Texture Quality Fix
+    useEffect(() => {
+        const anisotropy = gl.capabilities.getMaxAnisotropy();
+        scene.traverse((object) => {
+            if (object.isMesh) {
+                if (object.material.map) object.material.map.anisotropy = anisotropy;
+                if (object.material.emissiveMap) object.material.emissiveMap.anisotropy = anisotropy;
+                if (object.material.roughnessMap) object.material.roughnessMap.anisotropy = anisotropy;
+                if (object.material.metalnessMap) object.material.metalnessMap.anisotropy = anisotropy;
+                if (object.material.normalMap) object.material.normalMap.anisotropy = anisotropy;
+                object.castShadow = true;
+                object.receiveShadow = true;
+            }
+        });
+    }, [gl, scene]);
 
     // Expose the head node via ref
     React.useImperativeHandle(ref, () => ({

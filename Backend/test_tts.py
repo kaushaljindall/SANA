@@ -1,18 +1,18 @@
-import edge_tts
 import asyncio
+import edge_tts
 
-async def test_tts():
-    print("Testing Edge TTS...")
-    text = "Hello, I am SANA. This is a test of the voice system."
-    voice = "en-US-JennyNeural"
-    output_file = "test_audio.mp3"
-    
-    try:
-        communicate = edge_tts.Communicate(text, voice)
-        await communicate.save(output_file)
-        print(f"✅ Success! Audio saved to {output_file}")
-    except Exception as e:
-        print(f"❌ Error: {e}")
+TEXT = "Hello! This is a test of the Edge TTS system for SANA."
+VOICE = "en-US-AriaNeural"
+OUTPUT_FILE = "test_audio.mp3"
+
+async def main():
+    print(f"Generating TTS for: '{TEXT}'")
+    communicate = edge_tts.Communicate(TEXT, VOICE)
+    await communicate.save(OUTPUT_FILE)
+    print(f"✅ Saved audio to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
-    asyncio.run(test_tts())
+    try:
+        asyncio.run(main())
+    except Exception as e:
+        print(f"❌ Error: {e}")

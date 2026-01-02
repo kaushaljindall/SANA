@@ -61,7 +61,7 @@ function Settings() {
 
     useEffect(() => {
         // Load user data for edit profile
-        const userStr = localStorage.getItem('user');
+        const userStr = sessionStorage.getItem('user');
         if (userStr) {
             const user = JSON.parse(userStr);
             setEditProfileData({ name: user.name || '', email: user.email || '' });
@@ -98,7 +98,7 @@ function Settings() {
         e.preventDefault();
         setStatusMessage('Updating profile...');
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             const response = await fetch('http://localhost:3000/auth/me', {
                 method: 'PUT',
                 headers: {
@@ -111,7 +111,7 @@ function Settings() {
             if (!response.ok) throw new Error('Failed to update profile');
 
             const updatedUser = await response.json();
-            localStorage.setItem('user', JSON.stringify(updatedUser)); // Update local storage
+            sessionStorage.setItem('user', JSON.stringify(updatedUser)); // Update local storage
             setStatusMessage('✅ Profile updated successfully');
             setTimeout(() => setStatusMessage(''), 3000);
 
@@ -128,7 +128,7 @@ function Settings() {
         e.preventDefault();
         setStatusMessage('Updating password...');
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             const response = await fetch('http://localhost:3000/auth/change-password', {
                 method: 'POST',
                 headers: {
@@ -182,18 +182,16 @@ function Settings() {
         <Layout
             headerContent={
                 <>
-                    <h1 className="text-xl sm:text-2xl font-bold text-white">Settings</h1>
+                    <h1 className="h1-display text-2xl">Settings</h1>
                     <div></div>
                 </>
             }
         >
-            <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-                {/* Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-purple-950/10 to-pink-950/5"></div>
+            <div className="relative w-full h-full">
 
                 {/* Content */}
-                <div className="absolute inset-0 overflow-y-auto pt-20 pb-8 px-4 sm:px-8">
-                    <div className="max-w-3xl mx-auto space-y-6">
+                <div className="absolute inset-0 overflow-y-auto pt-24 pb-8 px-4 sm:px-8 custom-scrollbar">
+                    <div className="max-w-3xl mx-auto space-y-6 pb-12">
 
                         {/* Status Message Toast */}
                         {statusMessage && (
@@ -532,8 +530,8 @@ function Settings() {
                         {/* Sign Out */}
                         <button
                             onClick={() => {
-                                localStorage.removeItem('token');
-                                localStorage.removeItem('user');
+                                sessionStorage.removeItem('token');
+                                sessionStorage.removeItem('user');
                                 localStorage.removeItem('sanaSettings');
                                 window.location.href = '/login';
                             }}

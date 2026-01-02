@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .env
+rag/vector_store/
+rag/__pycache__/

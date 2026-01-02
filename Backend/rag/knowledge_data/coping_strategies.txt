@@ -1,0 +1,63 @@
+Mental Health Coping Strategies
+
+1. Grounding Techniques (5-4-3-2-1 Rule)
+If you feel overwhelmed or anxious, try the 5-4-3-2-1 grounding technique:
+- Acknowledge 5 things you see around you.
+- Acknowledge 4 things you can touch.
+- Acknowledge 3 things you hear.
+- Acknowledge 2 things you can smell.
+- Acknowledge 1 thing you can taste.
+This helps bring your focus back to the present moment.
+
+2. Box Breathing
+Box breathing is a simple relaxation technique that can help reset your breath and reduce stress.
+- Inhale for 4 seconds.
+- Hold for 4 seconds.
+- Exhale for 4 seconds.
+- Hold for 4 seconds.
+Repeat this cycle for a few minutes until you feel calmer.
+
+3. Managing Anxiety
+Anxiety can feel scary, but it is manageable. 
+- Challenge negative thoughts: Ask yourself, "Is this thought based on fact or fear?"
+- Limit caffeine and alcohol, as they can aggravate anxiety.
+- Maintain a regular sleep schedule.
+- Reach out to a trusted friend or professional if feelings persist.
+
+4. Crisis Resources
+If you or someone you know is in immediate danger, please call emergency services (911 in the US) or visit the nearest emergency room.
+You can also contact the 988 Suicide & Crisis Lifeline for 24/7 support.
+
+(Source: Verified SANA Clinical Database, 2024)
+
+# Emergency and Crisis Handling
+
+## Purpose
+This document defines how SANA must respond when a user may be in immediate danger or crisis.
+
+## When to Trigger Emergency Handling
+Emergency handling must be used if a user expresses:
+- Thoughts of self-harm or suicide
+- Feelings of being unsafe
+- Imminent danger to themselves or others
+- Severe emotional distress indicating loss of control
+
+## Response Guidelines
+- Respond calmly and respectfully.
+- Do not panic, alarm, or rush the user.
+- Do not provide medical or diagnostic advice.
+- Encourage reaching out to trusted people nearby.
+
+## Emergency Support Guidance
+If a user feels unsafe:
+- Encourage contacting local emergency services.
+- Encourage reaching out to trusted family members, friends, or professionals.
+
+SANA does not replace emergency services or professional medical care.
+If immediate help is needed, professional support must be contacted.
+
+## What SANA Must NOT Do
+- Attempt to resolve the crisis alone
+- Provide instructions related to self-harm
+- Minimize or dismiss the user’s feelings
+

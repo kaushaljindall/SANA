@@ -4,41 +4,50 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 
 ![SANA](Frontend/public/logo/image.png)
 
-## 🌟 Features
+## 🌟 Features in Detail
 
-### 🎭 3D Avatar Companion (Ziva)
-- Interactive 3D avatar with realistic animations
-- Real-time lip-sync with AI-generated speech
-- Dynamic facial expressions based on conversation context
-- Voice and text interaction support
+### 🧠 Advanced AI Core (RAG & Groq)
+- **Knowledge-Grounded Responses**: Utilizes **Retrieval-Augmented Generation (RAG)** to provide accurate, therapeutically relevant information from a curated knowledge base.
+- **Ultra-Fast Inference**: Powered by **Groq's llama-3.3-70b-versatile**, ensuring conversational fluidity with sub-second latency.
+- **Contextual Awareness**: Maintains session history to provide personalized and continuous support.
 
-### 📹 Doctor Connect (WebRTC)
-- Peer-to-peer video calls for professional consultations
-- Real-time audio/video streaming
-- Call controls (mute, camera toggle, end call)
-- Mock signaling (ready for production signaling server)
+### 🎭 Immersive 3D Companion (Ziva)
+- **Interactive Presence**: A fully 3D avatar that listens and responds in real-time.
+- **Lip-Sync & Animation**: Powered by **Viseme analysis** for realistic speech-to-facial-movement synchronization.
+- **Hands-Free Interaction**: Integrated **Voice Activity Detection (VAD)** allows for seamless, button-free conversation with auto-start and auto-timeout.
 
-### 💬 AI Chatbot
-- Powered by **Groq's llama-3.3-70b-versatile**
-- Lightning-fast responses (under 1 second)
-- Contextual, empathetic conversations
-- Session-based chat history
-- Real-time typing indicators
+### 📅 Proactive Care System
+- **Weekly Check-ins**: SANA proactively initiates weekly mental health check-ins to track progress over time.
+- **Smart Reminders**: Intelligent nudges based on user activity and scheduled goals.
+- **Adaptive Questioning**: Check-in questions evolve based on previous responses and current state.
 
-### 🤝 Peer Support Forum
-- Anonymous peer support community
-- Safe, non-judgmental space
-- No gamification or pressure
-- Gentle, therapeutic design
+### 🔐 Secure Authentication & User Management
+- **Safe & Secure**: Full JWT-based authentication system for secure login and registration.
+- **Profile Management**: Manage personal details, medical history, and user preferences.
+- **Session Privacy**: Chat histories and personal data are protected and user-scoped.
 
-### 👤 User Profile
-- Personal wellness stats
-- Session tracking
-- Clean, minimal interface
+###  Smart Appointment Booking
+- **Doctor Discovery**: Browse available mental health professionals.
+- **Scheduling System**: Integrated booking interface to schedule appointments with doctors.
+- **Appointment Management**: View upcoming and past appointments in a dedicated dashboard.
+
+### Telehealth Video Consultations
+- **HD Video Calls**: Built on **WebRTC** for high-quality, peer-to-peer video sessions.
+- **In-Call Tools**: Mute, camera toggle, and screen sharing capabilities (in progress).
+- **Secure Connection**: Direct P2P connection ensures conversation privacy.
+
+### Anonymous Peer Support
+- **Safe Community**: A judgment-free forum for users to share experiences and advice.
+- **Categorized Discussions**: Topic-based threads for specific mental health areas (anxiety, depression, mindfulness).
+- **Moderation**: (Planned) AI-assisted moderation to ensure community safety.
+
+###  Wellness Dashboard
+- **Insights**: Visual representation of session frequency and mood trends.
+- **Activity Tracking**: Monitor engagement with the platform to encourage consistent self-care.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18** with TypeScript
@@ -47,117 +56,28 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 - **Tailwind CSS** for styling
 - **WebRTC** for video calls
 - **React Router** for navigation
+- **VAD (Voice Activity Detection)** for hands-free audio
 
 ### Backend
 - **FastAPI** (Python)
-- **Groq** (llama-3.3-70b-versatile) for LLM - ultra-fast inference
-- **Whisper** for speech-to-text
-- **Edge TTS** for text-to-speech
-- **CORS** enabled for frontend integration
+- **LangChain** / **RAG** for knowledge retrieval
+- **Groq** (llama-3.3-70b-versatile) for LLM
+- **Whisper** (OpenAI) for speech-to-text
+- **Edge TTS** for high-quality, ultra-low latency text-to-speech
+- **JWT** (JSON Web Tokens) for authentication
+- **MongoDB** (Motor async driver) for data persistence
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
-- **Node.js** 18+ and npm
-- **Python** 3.9+
-- **Groq API Key** (Free at [console.groq.com](https://console.groq.com/keys))
-
----
-
-## 🚀 Setup & Installation
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/SANA.git
-cd SANA
-```
-
-### 2. Backend Setup
-
-```bash
-cd Backend
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env file
-copy .env.example .env  # Windows
-# cp .env.example .env  # macOS/Linux
-
-# Add your API key to .env
-# GROQ_API_KEY=your_api_key_here
-```
-
-### 3. Frontend Setup
-
-```bash
-cd Frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-### 4. Start the Application
-
-**Terminal 1 - Backend:**
-```bash
-cd Backend
-venv\Scripts\activate  # or source venv/bin/activate
-uvicorn main:app --reload --port 3000
-```
-
-**Terminal 2 - Frontend:**
-```bash
-cd Frontend
-npm run dev
-```
-
-Open **http://localhost:5173** in your browser.
+- **Node.js** 18+
+- **Python** 3.10+ (Recommended)
+- **Groq API Key** (Required for LLM)
 
 ---
 
-## 🌐 API Endpoints
 
-### Chat Endpoints
-- `POST /chat` - Text-based chat with Gemini
-- `POST /talk` - Voice input (speech-to-text + LLM + text-to-speech)
-- `POST /clear-history` - Clear chat session history
-
-### Request Examples
-
-**Text Chat:**
-```bash
-POST http://localhost:3000/chat
-Content-Type: application/json
-
-{
-  "message": "I'm feeling anxious today",
-  "sessionId": "default"
-}
-```
-
-**Response:**
-```json
-{
-  "text": "I hear you. Anxiety can feel overwhelming...",
-  "facialExpression": "default",
-  "animation": "Thinking",
-  "audio": null
-}
-```
 
 ---
 
@@ -166,34 +86,31 @@ Content-Type: application/json
 ```
 SANA/
 ├── Backend/
-│   ├── main.py              # FastAPI server
+│   ├── main.py              # FastAPI server entry point
+│   ├── auth.py              # Authentication logic
+│   ├── rag/                 # RAG (Retrieval Augmented Generation) System
+│   │   ├── rag_chain.py     # LangChain logic
+│   │   ├── rag_retriever.py # Knowledge retrieval
+│   │   └── knowledge_data/  # Source documents
+│   ├── routes/              # API Endpoints (Auth, Chat, Doctors, Forum)
+│   ├── services/            # Business logic
 │   ├── requirements.txt     # Python dependencies
-│   ├── .env.example        # Environment variables template
-│   └── .env                # Your API keys (gitignored)
+│   └── .env                 # API Keys & Config
 │
 ├── Frontend/
 │   ├── src/
 │   │   ├── pages/
-│   │   │   ├── LandingPage.tsx       # Home with 3D avatar
-│   │   │   ├── DoctorConnect.tsx     # WebRTC video calls
-│   │   │   ├── PeerSupport.tsx       # Anonymous forum
-│   │   │   └── Profile.tsx           # User profile
-│   │   ├── components/
-│   │   │   ├── canvas/
-│   │   │   │   ├── Scene.tsx         # 3D scene setup
-│   │   │   │   └── Ziva.tsx          # Avatar model
-│   │   │   ├── Layout.tsx            # Shared layout
-│   │   │   ├── NavigationMenu.tsx    # Sidebar navigation
-│   │   │   ├── VoiceInput.tsx        # Voice recording
-│   │   │   └── Chatbot.tsx           # AI chatbot
-│   │   ├── services/
-│   │   │   ├── ApiService.ts         # Backend API calls
-│   │   │   └── webrtcService.ts      # WebRTC logic
-│   │   └── App.tsx
-│   ├── public/
-│   │   ├── logo/
-│   │   └── models/                   # 3D avatar files
-│   ├── package.json
+│   │   │   ├── LandingPage.tsx   # Hero section & Intro
+│   │   │   ├── Login.tsx         # Authentication
+│   │   │   ├── Register.tsx      # User Signup
+│   │   │   ├── LiveSession.tsx   # 3D Avatar chat interface
+│   │   │   ├── DoctorConnect.tsx # Video call portal
+│   │   │   ├── BookingPage.tsx   # Appointment scheduling
+│   │   │   ├── PeerSupport.tsx   # Community forum
+│   │   │   └── Profile.tsx       # User dashboard
+│   │   ├── components/       # Reusable UI components
+│   │   ├── services/         # API & WebRTC services
+│   │   └── App.tsx           # Main React component
 │   └── vite.config.ts
 │
 ├── .gitignore
@@ -202,16 +119,15 @@ SANA/
 
 ---
 
-## 🎨 Design Philosophy
+## 🎨 Design Philosophy: "Ethereal Sanctuary"
 
-SANA is designed with mental health users in mind:
+SANA features a completely redesigned user interface known as **"Ethereal Sanctuary"**. This premium design language focuses on creating a safe, calming, yet highly professional environment for mental health support.
 
-- **Calm, Dark Theme** - Easy on the eyes, reduces overstimulation
-- **Minimal Interactions** - No overwhelming choices
-- **Non-Judgmental Language** - Warm, supportive tone
-- **No Gamification** - No likes, scores, or pressure
-- **Privacy First** - Anonymous peer support
-- **Accessible** - Responsive design, clear typography
+- **Glassmorphism Spec**: Extensive use of frosted glass effects (`backdrop-blur`), translucent layers, and subtle borders to create depth and hierarchy without heaviness.
+- **Deep Ambient Aesthetics**: A rich, deep color palette (`sana-navy` to `slate-900`) paired with vibrant accent gradients (`sana-gradient`) to evoke a sense of calm and modern sophistication.
+- **Micro-Interactions**: Smooth CSS transitions, fade-in animations, and interactive hover states make the application feel alive and responsive.
+- **Premium Typography**: Utilization of display fonts for headers (`h1-display`) and clean sans-serif bodies for maximum readability.
+- **Consistent Visual Identity**: A unified design system using custom Tailwind components (`glass-panel`, `glass-button`, `glass-input`) across all pages.
 
 ---
 
@@ -220,21 +136,20 @@ SANA is designed with mental health users in mind:
 Create a `.env` file in the `Backend/` directory:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
+MONGO_DETAILS=your_mongodb_connection_string
+DB_NAME=your_database_name
 ```
-
-Get your Gemini API key from: https://aistudio.google.com/app/apikey
 
 ---
 
 ## 🧪 Features in Development
 
-- [ ] Real signaling server for WebRTC (currently mock)
-- [ ] User authentication
-- [ ] Appointment scheduling
-- [ ] Mood tracking and analytics
-- [ ] Professional therapist integration
-- [ ] Multi-language support
+- [ ] Real signaling server for WebRTC (currently mock/P2P)
+- [ ] Mood tracking analytics (Advanced AI sentiment analysis)
+- [ ] Professional therapist integration (Onboarding portal)
+- [ ] Multi-language support (i18n)
+- [ ] Mobile App (React Native)
 
 ---
 
@@ -262,6 +177,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Three.js** / **Ready Player Me** for 3D avatar technology
 - **FastAPI** for the robust backend framework
 - **React Three Fiber** for 3D in React
+- **Tailwind CSS** for the powerful styling engine
 
 ---
 
@@ -275,4 +191,5 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-**Built with 💙 by **Kaushal Jindal** for those who need support**
+**Developed with 💙 by [Kaushal Jindal](https://github.com/kaushaljindall)**
+

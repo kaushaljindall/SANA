@@ -79,3 +79,19 @@ output/
 
 # Whisper model cache
 *.pt
+
+# Documentation / Setup Files
+ARCHITECTURE_DIAGRAM_PROMPT.md
+ARCHITECTURE_ADAPTIVE_ASSESSMENT.md
+AUTH_SETUP.md
+GROQ_SETUP.md
+SETUP.md
+
+# Debug / Scratch scripts
+debug_*.py
+test_*.py
+check_*.py
+test_*.py
+test_tts.py
+test_chat.py
+

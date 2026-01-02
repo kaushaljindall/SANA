@@ -29,8 +29,8 @@ function Login() {
             }
 
             // Save JWT token
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            sessionStorage.setItem('token', data.token);
+            sessionStorage.setItem('user', JSON.stringify(data.user));
 
             // Redirect to home
             navigate('/');
@@ -47,12 +47,12 @@ function Login() {
     };
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-            {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-purple-950/10 to-pink-950/5"></div>
+        <div className="relative w-full h-screen overflow-hidden bg-sana-bg text-sana-text selection:bg-sana-primary/30">
+            {/* Global Gradient Background */}
+            <div className="absolute inset-0 bg-sana-gradient pointer-events-none"></div>
 
             {/* Stars */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 pointer-events-none">
                 {[...Array(50)].map((_, i) => (
                     <div
                         key={i}
@@ -69,49 +69,49 @@ function Login() {
 
             {/* Login Form */}
             <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-                <div className="w-full max-w-md">
+                <div className="w-full max-w-md animate-fade-in-up">
                     {/* Logo */}
                     <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-white mb-2">SANA</h1>
-                        <p className="text-white/60 text-sm">Welcome back</p>
+                        <h1 className="h1-display text-5xl mb-2 text-shadow-glow">SANA</h1>
+                        <p className="text-sana-text-muted text-sm tracking-widest uppercase">Welcome back</p>
                     </div>
 
                     {/* Form Card */}
-                    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 space-y-6">
-                        <form onSubmit={handleEmailLogin} className="space-y-4">
+                    <div className="glass-panel p-8 space-y-6">
+                        <form onSubmit={handleEmailLogin} className="space-y-5">
                             {/* Email */}
                             <div>
-                                <label className="text-white/70 text-sm mb-2 block">Email</label>
+                                <label className="text-sana-text/70 text-xs uppercase font-bold tracking-wider mb-2 block">Email</label>
                                 <div className="relative">
-                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sana-text-muted" />
                                     <input
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="you@example.com"
                                         required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/20 transition-all duration-300"
+                                        className="glass-input pl-12"
                                     />
                                 </div>
                             </div>
 
                             {/* Password */}
                             <div>
-                                <label className="text-white/70 text-sm mb-2 block">Password</label>
+                                <label className="text-sana-text/70 text-xs uppercase font-bold tracking-wider mb-2 block">Password</label>
                                 <div className="relative">
-                                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sana-text-muted" />
                                     <input
                                         type={showPassword ? 'text' : 'password'}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="••••••••"
                                         required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-12 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/20 transition-all duration-300"
+                                        className="glass-input pl-12 pr-12"
                                     />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-sana-text-muted hover:text-sana-text transition-colors"
                                     >
                                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                     </button>
@@ -120,7 +120,7 @@ function Login() {
 
                             {/* Error Message */}
                             {error && (
-                                <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-xl">
+                                <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl animate-shake">
                                     <AlertCircle className="w-4 h-4 text-red-400" />
                                     <p className="text-red-300 text-sm">{error}</p>
                                 </div>
@@ -130,7 +130,7 @@ function Login() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 disabled:from-gray-600 disabled:to-gray-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg disabled:cursor-not-allowed"
+                                className="glass-button w-full justify-center"
                             >
                                 {loading ? (
                                     <>
@@ -144,19 +144,19 @@ function Login() {
                         </form>
 
                         {/* Divider */}
-                        <div className="relative">
+                        <div className="relative py-2">
                             <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-white/10"></div>
+                                <div className="w-full border-t border-white/5"></div>
                             </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="px-4 bg-slate-900/50 text-white/50">or</span>
+                            <div className="relative flex justify-center text-xs uppercase tracking-widest">
+                                <span className="px-4 text-sana-text-muted bg-transparent">or continue with</span>
                             </div>
                         </div>
 
                         {/* Google OAuth */}
                         <button
                             onClick={handleGoogleLogin}
-                            className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white hover:bg-white/95 rounded-xl text-slate-900 font-semibold transition-all duration-300 shadow-lg"
+                            className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white hover:bg-white/90 rounded-xl text-slate-900 font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24">
                                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -164,13 +164,13 @@ function Login() {
                                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                             </svg>
-                            Continue with Google
+                            Google
                         </button>
 
                         {/* Sign Up Link */}
-                        <p className="text-center text-white/60 text-sm">
+                        <p className="text-center text-sana-text-muted text-sm">
                             Don't have an account?{' '}
-                            <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
+                            <Link to="/register" className="text-sana-primary hover:text-sana-accent font-bold transition-colors">
                                 Sign up
                             </Link>
                         </p>

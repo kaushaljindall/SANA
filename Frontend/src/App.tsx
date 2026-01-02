@@ -7,6 +7,10 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import BookingPage from './pages/BookingPage';
+import AppointmentsPage from './pages/AppointmentsPage';
+import LiveSession from './pages/LiveSession';
+import AssessmentPage from './pages/AssessmentPage';
 import { ProtectedRoute, PublicRoute } from './components/ProtectedRoute';
 
 function App() {
@@ -49,6 +53,26 @@ function App() {
         <Route path="/settings" element={
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        } />
+        <Route path="/book-appointment" element={
+          <ProtectedRoute>
+            <BookingPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/assessment" element={
+          <ProtectedRoute>
+            <AssessmentPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/appointments" element={
+          <ProtectedRoute>
+            <AppointmentsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/session/:id" element={
+          <ProtectedRoute>
+            <LiveSession />
           </ProtectedRoute>
         } />
 

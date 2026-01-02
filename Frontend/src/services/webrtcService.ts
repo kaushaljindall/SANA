@@ -45,3 +45,19 @@ export function stopWebRTC() {
     localStream?.getTracks().forEach(track => track.stop());
     localStream = null;
 }
+
+export function toggleAudio(enabled: boolean) {
+    if (localStream) {
+        localStream.getAudioTracks().forEach(track => {
+            track.enabled = enabled;
+        });
+    }
+}
+
+export function toggleVideo(enabled: boolean) {
+    if (localStream) {
+        localStream.getVideoTracks().forEach(track => {
+            track.enabled = enabled;
+        });
+    }
+}

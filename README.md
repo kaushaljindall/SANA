@@ -87,29 +87,50 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 SANA/
 ├── Backend/
 │   ├── main.py              # FastAPI server entry point
-│   ├── auth.py              # Authentication logic
+│   ├── auth.py              # Authentication core
+│   ├── db/
+│   │   └── database.py      # MongoDB connection
 │   ├── rag/                 # RAG (Retrieval Augmented Generation) System
 │   │   ├── rag_chain.py     # LangChain logic
 │   │   ├── rag_retriever.py # Knowledge retrieval
-│   │   └── knowledge_data/  # Source documents
-│   ├── routes/              # API Endpoints (Auth, Chat, Doctors, Forum)
-│   ├── services/            # Business logic
+│   │   └── knowledge_data/  # Source markdown documents
+│   ├── routes/
+│   │   ├── assessment.py    # Deep reflection endpoints
+│   │   ├── weekly_assignment.py # Proactive check-in endpoints
+│   │   ├── auth.py          # Auth endpoints
+│   │   ├── chat.py          # Chatbot endpoints
+│   │   ├── doctor.py        # Doctor management
+│   │   ├── forum.py         # Peer support
+│   │   └── ...
+│   ├── services/
+│   │   ├── assessment_service.py # Core assessment logic
+│   │   ├── weekly_service.py     # Proactive session logic
+│   │   ├── audio_utils.py        # Whisper & Edge TTS aggregation
+│   │   ├── doctor_service.py     # Doctor search & booking
+│   │   └── ...
+│   ├── models/              # Pydantic models
 │   ├── requirements.txt     # Python dependencies
 │   └── .env                 # API Keys & Config
 │
 ├── Frontend/
 │   ├── src/
+│   │   ├── components/
+│   │   │   ├── canvas/           # 3D Avatar (Ziva) scenes
+│   │   │   ├── Chatbot.tsx       # Text chat overlay
+│   │   │   ├── VoiceInput.tsx    # Microphone & animation trigger
+│   │   │   ├── WeeklyAssignment.tsx # Proactive check-in UI
+│   │   │   └── ...
+│   │   ├── hooks/
+│   │   │   └── useVAD.ts         # Hands-free Voice Activity Detection
 │   │   ├── pages/
-│   │   │   ├── LandingPage.tsx   # Hero section & Intro
-│   │   │   ├── Login.tsx         # Authentication
-│   │   │   ├── Register.tsx      # User Signup
-│   │   │   ├── LiveSession.tsx   # 3D Avatar chat interface
+│   │   │   ├── LandingPage.tsx   # Main 3D experience
+│   │   │   ├── AssessmentPage.tsx # Deep reflection flow
 │   │   │   ├── DoctorConnect.tsx # Video call portal
-│   │   │   ├── BookingPage.tsx   # Appointment scheduling
 │   │   │   ├── PeerSupport.tsx   # Community forum
-│   │   │   └── Profile.tsx       # User dashboard
-│   │   ├── components/       # Reusable UI components
+│   │   │   ├── Profile.tsx       # User dashboard
+│   │   │   └── ...
 │   │   ├── services/         # API & WebRTC services
+│   │   ├── store/            # Zustand state management
 │   │   └── App.tsx           # Main React component
 │   └── vite.config.ts
 │

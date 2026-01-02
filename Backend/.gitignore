@@ -25,3 +25,4 @@ dist-ssr
 .env
 rag/vector_store/
 rag/__pycache__/
+requirements1.txt

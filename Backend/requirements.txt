@@ -22,6 +22,7 @@ sentence-transformers
 langchain-groq
 langchain-community
 langchain-core
+langchain-huggingface
 faiss-cpu
 gunicorn
 deep-translator

@@ -77,7 +77,7 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 
 ---
 ## Architecture
-- **detailed architecture diagram**: [ARCHITECTURE_DIAGRAM_PROMPT.md](ARCHITECTURE_DIAGRAM_PROMPT.md)
+- **detailed architecture diagram**: will be added soon
 
 ---
 

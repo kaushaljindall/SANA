@@ -91,7 +91,4 @@ SETUP.md
 debug_*.py
 test_*.py
 check_*.py
-test_*.py
-test_tts.py
-test_chat.py
 

@@ -6,27 +6,27 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 
 ## 🌟 Features in Detail
 
-### 🧠 Advanced AI Core (RAG & Groq)
+### Advanced AI Core (RAG & Groq)
 - **Knowledge-Grounded Responses**: Utilizes **Retrieval-Augmented Generation (RAG)** to provide accurate, therapeutically relevant information from a curated knowledge base.
 - **Ultra-Fast Inference**: Powered by **Groq's llama-3.3-70b-versatile**, ensuring conversational fluidity with sub-second latency.
 - **Contextual Awareness**: Maintains session history to provide personalized and continuous support.
 
-### 🎭 Immersive 3D Companion (Ziva)
+### Immersive 3D Companion (Ziva)
 - **Interactive Presence**: A fully 3D avatar that listens and responds in real-time.
 - **Lip-Sync & Animation**: Powered by **Viseme analysis** for realistic speech-to-facial-movement synchronization.
 - **Hands-Free Interaction**: Integrated **Voice Activity Detection (VAD)** allows for seamless, button-free conversation with auto-start and auto-timeout.
 
-### 📅 Proactive Care System
+### Proactive Care System
 - **Weekly Check-ins**: SANA proactively initiates weekly mental health check-ins to track progress over time.
 - **Smart Reminders**: Intelligent nudges based on user activity and scheduled goals.
 - **Adaptive Questioning**: Check-in questions evolve based on previous responses and current state.
 
-### 🔐 Secure Authentication & User Management
+### Secure Authentication & User Management
 - **Safe & Secure**: Full JWT-based authentication system for secure login and registration.
 - **Profile Management**: Manage personal details, medical history, and user preferences.
 - **Session Privacy**: Chat histories and personal data are protected and user-scoped.
 
-###  Smart Appointment Booking
+### Smart Appointment Booking
 - **Doctor Discovery**: Browse available mental health professionals.
 - **Scheduling System**: Integrated booking interface to schedule appointments with doctors.
 - **Appointment Management**: View upcoming and past appointments in a dedicated dashboard.
@@ -76,8 +76,8 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 - **Groq API Key** (Required for LLM)
 
 ---
-
-
+## Architecture
+- **detailed architecture diagram**: [ARCHITECTURE_DIAGRAM_PROMPT.md](ARCHITECTURE_DIAGRAM_PROMPT.md)
 
 ---
 
@@ -131,7 +131,7 @@ SANA features a completely redesigned user interface known as **"Ethereal Sanctu
 
 ---
 
-## 🔐 Environment Variables
+<!-- ## 🔐 Environment Variables
 
 Create a `.env` file in the `Backend/` directory:
 
@@ -139,7 +139,7 @@ Create a `.env` file in the `Backend/` directory:
 GROQ_API_KEY=your_groq_api_key_here
 MONGO_DETAILS=your_mongodb_connection_string
 DB_NAME=your_database_name
-```
+``` -->
 
 ---
 
@@ -187,7 +187,7 @@ SANA is a support tool, not a replacement for professional mental health care.
 
 ## 📧 Contact
 
-For questions or support, please open an issue on GitHub.
+For questions or support, please open an issue on GitHub also you can contact me on my linkedin profile **[Kaushal-Jindal](https://www.linkedin.com/in/kaushal-jindal/)**.
 
 ---
 

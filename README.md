@@ -6,7 +6,7 @@ A compassionate AI-powered mental health support platform featuring a 3D avatar 
 
 ## 🎥 See SANA in Action
 
-[Watch Demo Video](Frontend/public/video/20260102-1956-17.8163260.mp4)
+[Watch Demo Video](Frontend/public/video/sana_demo.mp4)
 
 > Experience SANA's 3D avatar companion, voice interaction, and seamless mental health support in this demonstration.
 
